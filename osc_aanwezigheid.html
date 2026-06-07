@@ -30,6 +30,7 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
 .sbt.r { background: #2d0f0f; border-color: #8b1a1a; color: #f85149; font-weight: 700; }
 .sbt.o { background: #2d1800; border-color: #bd561d; color: #e3812b; font-weight: 700; }
 .sbt.b { background: #0d1f38; border-color: #1f6feb; color: #58a6ff; font-weight: 700; }
+.sbt.p { background: #1e0d38; border-color: #6e40c9; color: #bc8cff; font-weight: 700; }
 .bottom { padding: 12px 12px 0; }
 .counter { font-size: 12px; color: #8b949e; text-align: right; margin-bottom: 10px; }
 .previewcard { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
@@ -54,6 +55,7 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
   <span class="leg">&#x274C; afwezig</span>
   <span class="leg">&#x26A0;&#xFE0F; spoedverlof</span>
   <span class="leg">&#x1F4C5; verlof</span>
+  <span class="leg">&#x1F912; ziekteverlof</span>
 </div>
 
 <div class="persons" id="persons">
@@ -67,7 +69,8 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(0,2,this)">&#x274C; afwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(0,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
     </tr><tr>
-      <td colspan="2"><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(0,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(0,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(0,5,this)">&#x1F912; ziekteverlof</a></td>
     </tr></table>
   </div>
 
@@ -80,7 +83,8 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(1,2,this)">&#x274C; afwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(1,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
     </tr><tr>
-      <td colspan="2"><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(1,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(1,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(1,5,this)">&#x1F912; ziekteverlof</a></td>
     </tr></table>
   </div>
 
@@ -93,7 +97,8 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,2,this)">&#x274C; afwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
     </tr><tr>
-      <td colspan="2"><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,5,this)">&#x1F912; ziekteverlof</a></td>
     </tr></table>
   </div>
 
@@ -106,7 +111,8 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,2,this)">&#x274C; afwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
     </tr><tr>
-      <td colspan="2"><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,5,this)">&#x1F912; ziekteverlof</a></td>
     </tr></table>
   </div>
 
@@ -119,7 +125,8 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,2,this)">&#x274C; afwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
     </tr><tr>
-      <td colspan="2"><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,5,this)">&#x1F912; ziekteverlof</a></td>
     </tr></table>
   </div>
 
@@ -132,14 +139,57 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,2,this)">&#x274C; afwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
     </tr><tr>
-      <td colspan="2"><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr></table>
+  </div>
+
+  <div class="pcard" id="card-6">
+    <div class="pname">Angell</div>
+    <table class="brow"><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,0,this)">&#x2705; aanwezig</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,1,this)">&#x231B; verlaat</a></td>
+    </tr><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,2,this)">&#x274C; afwezig</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
+    </tr><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr></table>
+  </div>
+
+  <div class="pcard" id="card-7">
+    <div class="pname">Tariq</div>
+    <table class="brow"><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,0,this)">&#x2705; aanwezig</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,1,this)">&#x231B; verlaat</a></td>
+    </tr><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,2,this)">&#x274C; afwezig</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
+    </tr><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr></table>
+  </div>
+
+  <div class="pcard" id="card-8">
+    <div class="pname">Sheragenie</div>
+    <table class="brow"><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,0,this)">&#x2705; aanwezig</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,1,this)">&#x231B; verlaat</a></td>
+    </tr><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,2,this)">&#x274C; afwezig</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
+    </tr><tr>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,4,this)">&#x1F4C5; verlof</a></td>
+      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,5,this)">&#x1F912; ziekteverlof</a></td>
     </tr></table>
   </div>
 
 </div>
 
 <div class="bottom">
-  <div class="counter" id="counter">0 van 6 ingevuld</div>
+  <div class="counter" id="counter">0 van 9 ingevuld</div>
   <div class="previewcard">
     <div class="previewlabel">Voorbeeld bericht</div>
     <div class="previewtext" id="preview">Vul de statussen in...</div>
@@ -149,13 +199,14 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
 </div>
 
 <script>
-var namen = ["Shanillia","Erykah","Graciella","Cheequa","Juanita","Jamilla"];
+var namen = ["Shanillia","Erykah","Graciella","Cheequa","Juanita","Jamilla","Angell","Tariq","Sheragenie"];
 var statussen = [
   { cls:"g", emoji:"\u2705",             tekst:"aanwezig",    inBericht:false },
   { cls:"y", emoji:"\u231B",             tekst:"verlaat",     inBericht:true  },
   { cls:"r", emoji:"\u274C",             tekst:"afwezig",     inBericht:true  },
   { cls:"o", emoji:"\u26A0\uFE0F",       tekst:"spoedverlof", inBericht:true  },
-  { cls:"b", emoji:"\uD83D\uDCC5",       tekst:"verlof",      inBericht:true  }
+  { cls:"b", emoji:"\uD83D\uDCC5",       tekst:"verlof",      inBericht:true  },
+  { cls:"p", emoji:"\uD83E\uDD12",       tekst:"ziekteverlof",inBericht:true  }
 ];
 var keuzes = new Array(namen.length);
 var dagen   = ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"];
