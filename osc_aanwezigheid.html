@@ -22,7 +22,7 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
 .pcard { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
 .pcard.done { border-color: #238636; }
 .pname { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 10px; }
-.brow { width: 100%; }
+.brow { width: 100%; border-collapse: separate; border-spacing: 0; }
 .brow td { width: 50%; padding: 3px; }
 .sbt { display: block; width: 100%; padding: 10px 4px; background: #21262d; border: 1px solid #30363d; border-radius: 8px; font-size: 12px; color: #8b949e; text-align: center; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; text-decoration: none; -webkit-user-select: none; user-select: none; }
 .sbt.g { background: #0f2d1a; border-color: #238636; color: #3fb950; font-weight: 700; }
@@ -31,14 +31,27 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
 .sbt.o { background: #2d1800; border-color: #bd561d; color: #e3812b; font-weight: 700; }
 .sbt.b { background: #0d1f38; border-color: #1f6feb; color: #58a6ff; font-weight: 700; }
 .sbt.p { background: #1e0d38; border-color: #6e40c9; color: #bc8cff; font-weight: 700; }
+.sbt.s { background: #1a2030; border-color: #30a0b0; color: #56d0e0; font-weight: 700; }
+.noteinput { display: none; width: 100%; margin-top: 8px; padding: 8px 10px; background: #21262d; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; outline: none; }
+.noteinput:focus { border-color: #30a0b0; }
+.repeat-toggle { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 12px 14px; margin: 12px 12px 0; display: table; width: calc(100% - 24px); }
+.repeat-toggle-inner { display: table-row; }
+.repeat-label { display: table-cell; vertical-align: middle; font-size: 14px; color: #c9d1d9; }
+.repeat-label small { display: block; font-size: 11px; color: #8b949e; margin-top: 2px; }
+.toggle-wrap { display: table-cell; vertical-align: middle; text-align: right; width: 52px; }
+.toggle { position: relative; display: inline-block; width: 44px; height: 26px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #30363d; border-radius: 26px; transition: .3s; }
+.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .3s; }
+input:checked + .slider { background: #238636; }
+input:checked + .slider:before { transform: translateX(18px); }
 .bottom { padding: 12px 12px 0; }
 .counter { font-size: 12px; color: #8b949e; text-align: right; margin-bottom: 10px; }
 .previewcard { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
 .previewlabel { font-size: 11px; color: #8b949e; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
 .previewtext { font-size: 14px; line-height: 1.9; color: #c9d1d9; white-space: pre-line; word-break: break-word; }
-.wabtn { display: block; width: 100%; padding: 14px; background: #21262d; border: none; border-radius: 12px; color: #484f58; font-size: 16px; font-weight: 700; text-align: center; cursor: default; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-appearance: none; appearance: none; }
-.wabtn.active { background: #25D366; color: #ffffff; cursor: pointer; }
-.resetbtn { display: block; width: 100%; margin-top: 10px; padding: 11px; background: transparent; border: 1px solid #30363d; border-radius: 12px; color: #8b949e; font-size: 13px; text-align: center; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-appearance: none; appearance: none; }
+.wabtn { display: block; width: 100%; padding: 14px; background: #25D366; border-radius: 12px; color: #fff; font-size: 16px; font-weight: 700; text-align: center; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; text-decoration: none; -webkit-user-select: none; user-select: none; }
+.resetbtn { display: block; width: 100%; margin-top: 10px; padding: 11px; background: transparent; border: 1px solid #30363d; border-radius: 12px; color: #8b949e; font-size: 13px; text-align: center; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; text-decoration: none; -webkit-user-select: none; user-select: none; }
 </style>
 </head>
 <body>
@@ -56,9 +69,10 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
   <span class="leg">&#x26A0;&#xFE0F; spoedverlof</span>
   <span class="leg">&#x1F4C5; verlof</span>
   <span class="leg">&#x1F912; ziekteverlof</span>
+  <span class="leg">&#x1F504; shift wijziging</span>
 </div>
 
-<div class="persons" id="persons">
+<div class="persons">
 
   <div class="pcard" id="card-0">
     <div class="pname">Shanillia</div>
@@ -71,7 +85,10 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
     </tr><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(0,4,this)">&#x1F4C5; verlof</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(0,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr><tr>
+      <td colspan="2"><a href="javascript:void(0)" class="sbt s" ontouchstart="" onclick="kies(0,6,this)">&#x1F504; shift wijziging</a></td>
     </tr></table>
+    <input class="noteinput" id="note-0" type="text" placeholder="Opmerking shift wijziging..." oninput="update()">
   </div>
 
   <div class="pcard" id="card-1">
@@ -85,11 +102,14 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
     </tr><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(1,4,this)">&#x1F4C5; verlof</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(1,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr><tr>
+      <td colspan="2"><a href="javascript:void(0)" class="sbt s" ontouchstart="" onclick="kies(1,6,this)">&#x1F504; shift wijziging</a></td>
     </tr></table>
+    <input class="noteinput" id="note-1" type="text" placeholder="Opmerking shift wijziging..." oninput="update()">
   </div>
 
   <div class="pcard" id="card-2">
-    <div class="pname">Graciella</div>
+    <div class="pname">Cheequa</div>
     <table class="brow"><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,0,this)">&#x2705; aanwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,1,this)">&#x231B; verlaat</a></td>
@@ -99,11 +119,14 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
     </tr><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,4,this)">&#x1F4C5; verlof</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(2,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr><tr>
+      <td colspan="2"><a href="javascript:void(0)" class="sbt s" ontouchstart="" onclick="kies(2,6,this)">&#x1F504; shift wijziging</a></td>
     </tr></table>
+    <input class="noteinput" id="note-2" type="text" placeholder="Opmerking shift wijziging..." oninput="update()">
   </div>
 
   <div class="pcard" id="card-3">
-    <div class="pname">Cheequa</div>
+    <div class="pname">Jamilla</div>
     <table class="brow"><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,0,this)">&#x2705; aanwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,1,this)">&#x231B; verlaat</a></td>
@@ -113,11 +136,14 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
     </tr><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,4,this)">&#x1F4C5; verlof</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(3,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr><tr>
+      <td colspan="2"><a href="javascript:void(0)" class="sbt s" ontouchstart="" onclick="kies(3,6,this)">&#x1F504; shift wijziging</a></td>
     </tr></table>
+    <input class="noteinput" id="note-3" type="text" placeholder="Opmerking shift wijziging..." oninput="update()">
   </div>
 
   <div class="pcard" id="card-4">
-    <div class="pname">Juanita</div>
+    <div class="pname">Angell</div>
     <table class="brow"><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,0,this)">&#x2705; aanwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,1,this)">&#x231B; verlaat</a></td>
@@ -127,11 +153,14 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
     </tr><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,4,this)">&#x1F4C5; verlof</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(4,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr><tr>
+      <td colspan="2"><a href="javascript:void(0)" class="sbt s" ontouchstart="" onclick="kies(4,6,this)">&#x1F504; shift wijziging</a></td>
     </tr></table>
+    <input class="noteinput" id="note-4" type="text" placeholder="Opmerking shift wijziging..." oninput="update()">
   </div>
 
   <div class="pcard" id="card-5">
-    <div class="pname">Jamilla</div>
+    <div class="pname">Tariq</div>
     <table class="brow"><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,0,this)">&#x2705; aanwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,1,this)">&#x231B; verlaat</a></td>
@@ -141,11 +170,14 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
     </tr><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,4,this)">&#x1F4C5; verlof</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(5,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr><tr>
+      <td colspan="2"><a href="javascript:void(0)" class="sbt s" ontouchstart="" onclick="kies(5,6,this)">&#x1F504; shift wijziging</a></td>
     </tr></table>
+    <input class="noteinput" id="note-5" type="text" placeholder="Opmerking shift wijziging..." oninput="update()">
   </div>
 
   <div class="pcard" id="card-6">
-    <div class="pname">Angell</div>
+    <div class="pname">Sheragenie</div>
     <table class="brow"><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,0,this)">&#x2705; aanwezig</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,1,this)">&#x231B; verlaat</a></td>
@@ -155,58 +187,49 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
     </tr><tr>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,4,this)">&#x1F4C5; verlof</a></td>
       <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(6,5,this)">&#x1F912; ziekteverlof</a></td>
+    </tr><tr>
+      <td colspan="2"><a href="javascript:void(0)" class="sbt s" ontouchstart="" onclick="kies(6,6,this)">&#x1F504; shift wijziging</a></td>
     </tr></table>
-  </div>
-
-  <div class="pcard" id="card-7">
-    <div class="pname">Tariq</div>
-    <table class="brow"><tr>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,0,this)">&#x2705; aanwezig</a></td>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,1,this)">&#x231B; verlaat</a></td>
-    </tr><tr>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,2,this)">&#x274C; afwezig</a></td>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
-    </tr><tr>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,4,this)">&#x1F4C5; verlof</a></td>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(7,5,this)">&#x1F912; ziekteverlof</a></td>
-    </tr></table>
-  </div>
-
-  <div class="pcard" id="card-8">
-    <div class="pname">Sheragenie</div>
-    <table class="brow"><tr>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,0,this)">&#x2705; aanwezig</a></td>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,1,this)">&#x231B; verlaat</a></td>
-    </tr><tr>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,2,this)">&#x274C; afwezig</a></td>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,3,this)">&#x26A0;&#xFE0F; spoedverlof</a></td>
-    </tr><tr>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,4,this)">&#x1F4C5; verlof</a></td>
-      <td><a href="javascript:void(0)" class="sbt" ontouchstart="" onclick="kies(8,5,this)">&#x1F912; ziekteverlof</a></td>
-    </tr></table>
+    <input class="noteinput" id="note-6" type="text" placeholder="Opmerking shift wijziging..." oninput="update()">
   </div>
 
 </div>
 
+<div class="repeat-toggle">
+  <div class="repeat-toggle-inner">
+    <div class="repeat-label">
+      Al eerder gestuurd vandaag
+      <small>Stuurt alleen medewerker &amp; status, geen inleiding</small>
+    </div>
+    <div class="toggle-wrap">
+      <label class="toggle">
+        <input type="checkbox" id="repeat-check" onchange="update()">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
 <div class="bottom">
-  <div class="counter" id="counter">0 afwijkingen</div>
+  <div class="counter" id="counter">Iedereen aanwezig</div>
   <div class="previewcard">
     <div class="previewlabel">Voorbeeld bericht</div>
-    <div class="previewtext" id="preview">Vul de statussen in...</div>
+    <div class="previewtext" id="preview"></div>
   </div>
-  <a href="javascript:void(0)" class="wabtn active" id="wabtn" ontouchstart="" onclick="stuurWA()">Stuur naar WhatsApp</a>
+  <a href="javascript:void(0)" class="wabtn" ontouchstart="" onclick="stuurWA()">Stuur naar WhatsApp</a>
   <a href="javascript:void(0)" class="resetbtn" ontouchstart="" onclick="resetAlles()">&#x21BA; Opnieuw beginnen</a>
 </div>
 
 <script>
-var namen = ["Shanillia","Erykah","Graciella","Cheequa","Juanita","Jamilla","Angell","Tariq","Sheragenie"];
+var namen = ["Shanillia","Erykah","Cheequa","Jamilla","Angell","Tariq","Sheragenie"];
 var statussen = [
-  { cls:"g", emoji:"\u2705",             tekst:"aanwezig",    inBericht:false },
-  { cls:"y", emoji:"\u231B",             tekst:"verlaat",     inBericht:true  },
-  { cls:"r", emoji:"\u274C",             tekst:"afwezig",     inBericht:true  },
-  { cls:"o", emoji:"\u26A0\uFE0F",       tekst:"spoedverlof", inBericht:true  },
-  { cls:"b", emoji:"\uD83D\uDCC5",       tekst:"verlof",      inBericht:true  },
-  { cls:"p", emoji:"\uD83E\uDD12",       tekst:"ziekteverlof",inBericht:true  }
+  { cls:"g", emoji:"\u2705",        tekst:"aanwezig",      inBericht:false },
+  { cls:"y", emoji:"\u231B",        tekst:"verlaat",       inBericht:true  },
+  { cls:"r", emoji:"\u274C",        tekst:"afwezig",       inBericht:true  },
+  { cls:"o", emoji:"\u26A0\uFE0F",  tekst:"spoedverlof",   inBericht:true  },
+  { cls:"b", emoji:"\uD83D\uDCC5",  tekst:"verlof",        inBericht:true  },
+  { cls:"p", emoji:"\uD83E\uDD12",  tekst:"ziekteverlof",  inBericht:true  },
+  { cls:"s", emoji:"\uD83D\uDD04",  tekst:"shift wijziging", inBericht:true }
 ];
 var keuzes = new Array(namen.length);
 var dagen   = ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"];
@@ -217,56 +240,76 @@ function getDatum() {
   return dagen[d.getDay()] + " " + d.getDate() + " " + maanden[d.getMonth()] + " " + d.getFullYear();
 }
 document.getElementById("datum").textContent = getDatum();
-update();
 
-function kies(persoonIdx, statusIdx, btn) {
-  var card = document.getElementById("card-" + persoonIdx);
+function kies(idx, statusIdx, btn) {
+  var card = document.getElementById("card-" + idx);
   var allBtns = card.querySelectorAll(".sbt");
+  for (var i = 0; i < allBtns.length; i++) allBtns[i].className = allBtns[i].className.replace(/\s*(g|y|r|o|b|p|s)\b/g,"") + (i === statusIdx || allBtns[i].textContent.indexOf("shift") > -1 && statusIdx === 6 ? "" : "");
+
+  // reset all buttons for this card
   for (var i = 0; i < allBtns.length; i++) {
-    allBtns[i].className = "sbt";
+    allBtns[i].className = "sbt" + (allBtns[i].textContent.indexOf("shift") > -1 ? " s" : "");
   }
   btn.className = "sbt " + statussen[statusIdx].cls;
-  keuzes[persoonIdx] = statusIdx;
-  card.className = "pcard done";
+
+  keuzes[idx] = statusIdx;
+  card.className = statusIdx === 0 ? "pcard" : "pcard done";
+
+  // show/hide note field
+  var noteEl = document.getElementById("note-" + idx);
+  if (statusIdx === 6) {
+    noteEl.style.display = "block";
+    noteEl.focus();
+  } else {
+    noteEl.style.display = "none";
+    noteEl.value = "";
+  }
   update();
 }
 
-function update() {
-  var header = "\uD83D\uDCCB OSC \u2013 FHR | Status\n\uD83D\uDCC5 " + getDatum() + "\n\nGoedemorgen team! Hieronder de statusupdate van vandaag:";
+function getRegelVoor(i) {
+  if (keuzes[i] === undefined || keuzes[i] === 0) return null;
+  var s = statussen[keuzes[i]];
+  if (!s.inBericht) return null;
+  var regel = s.emoji + " " + namen[i] + " \u2013 " + s.tekst;
+  if (keuzes[i] === 6) {
+    var note = document.getElementById("note-" + i).value.trim();
+    if (note) regel += ": " + note;
+  }
+  return regel;
+}
 
-  var afwijkendRegels = [];
+function update() {
+  var afwijkend = [];
   for (var i = 0; i < namen.length; i++) {
-    if (keuzes[i] !== undefined && statussen[keuzes[i]].inBericht) {
-      afwijkendRegels.push(statussen[keuzes[i]].emoji + " " + namen[i] + " \u2013 " + statussen[keuzes[i]].tekst);
-    }
+    var r = getRegelVoor(i);
+    if (r) afwijkend.push(r);
   }
 
-  document.getElementById("counter").textContent = afwijkendRegels.length === 0 ? "Iedereen aanwezig" : afwijkendRegels.length + " afwijking(en)";
-  document.getElementById("prog").style.width = Math.min(100, Math.round((afwijkendRegels.length / namen.length) * 100)) + "%";
+  document.getElementById("counter").textContent = afwijkend.length === 0 ? "Iedereen aanwezig" : afwijkend.length + " afwijking(en)";
+  document.getElementById("prog").style.width = Math.min(100, Math.round((afwijkend.length / namen.length) * 100)) + "%";
 
+  var isRepeat = document.getElementById("repeat-check").checked;
   var previewTekst;
-  if (afwijkendRegels.length === 0) {
-    previewTekst = header + "\n\nIedereen is vandaag aanwezig. \u2705";
+
+  if (afwijkend.length === 0) {
+    if (isRepeat) {
+      previewTekst = "\uD83D\uDCCB Update " + getDatum() + "\n\nIedereen is aanwezig. \u2705";
+    } else {
+      previewTekst = "\uD83D\uDCCB OSC \u2013 FHR | Status\n\uD83D\uDCC5 " + getDatum() + "\n\nGoedemorgen team! Hieronder de statusupdate van vandaag:\n\nIedereen is vandaag aanwezig. \u2705";
+    }
   } else {
-    previewTekst = header + "\n\n" + afwijkendRegels.join("\n");
+    if (isRepeat) {
+      previewTekst = "\uD83D\uDCCB Update " + getDatum() + "\n\n" + afwijkend.join("\n");
+    } else {
+      previewTekst = "\uD83D\uDCCB OSC \u2013 FHR | Status\n\uD83D\uDCC5 " + getDatum() + "\n\nGoedemorgen team! Hieronder de statusupdate van vandaag:\n\n" + afwijkend.join("\n");
+    }
   }
   document.getElementById("preview").textContent = previewTekst;
 }
 
-function getBericht() {
-  var header = "\uD83D\uDCCB OSC \u2013 FHR | Status\n\uD83D\uDCC5 " + getDatum() + "\n\nGoedemorgen team! Hieronder de statusupdate van vandaag:";
-  var regels = [];
-  for (var i = 0; i < namen.length; i++) {
-    if (keuzes[i] !== undefined && statussen[keuzes[i]].inBericht) {
-      regels.push(statussen[keuzes[i]].emoji + " " + namen[i] + " \u2013 " + statussen[keuzes[i]].tekst);
-    }
-  }
-  if (regels.length === 0) return header + "\n\nIedereen is vandaag aanwezig. \u2705";
-  return header + "\n\n" + regels.join("\n");
-}
-
 function stuurWA() {
-  var tekst = getBericht();
+  var tekst = document.getElementById("preview").textContent;
   if (navigator.share) {
     navigator.share({ text: tekst })["catch"](function() {});
   } else {
@@ -279,10 +322,18 @@ function resetAlles() {
   for (var i = 0; i < namen.length; i++) {
     document.getElementById("card-" + i).className = "pcard";
     var btns = document.getElementById("card-" + i).querySelectorAll(".sbt");
-    for (var j = 0; j < btns.length; j++) btns[j].className = "sbt";
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].className = "sbt" + (btns[j].textContent.indexOf("shift") > -1 ? " s" : "");
+    }
+    var noteEl = document.getElementById("note-" + i);
+    noteEl.style.display = "none";
+    noteEl.value = "";
   }
+  document.getElementById("repeat-check").checked = false;
   update();
 }
+
+update();
 </script>
 </body>
 </html>
